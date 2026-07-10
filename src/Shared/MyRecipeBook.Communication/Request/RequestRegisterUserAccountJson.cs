@@ -1,4 +1,6 @@
-﻿namespace MyRecipeBook.Communication.Request;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MyRecipeBook.Communication.Request;
 
 public class RequestRegisterUserAccountJson
 {
