@@ -1,6 +1,6 @@
 ﻿namespace MyRecipeBook.Domain.Entities;
 
-public class User
+public class User //como o sistema enxerga um usuário.
 {
     public Guid Id { get; private set; } = Guid.CreateVersion7(); 
     public bool Active { get; set; } = true;//Propriedade que vai "evitar" exclusão permanente no banco de dados,

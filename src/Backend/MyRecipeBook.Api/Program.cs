@@ -1,15 +1,22 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using MyRecipeBook.Api.Converters;
 using MyRecipeBook.Api.Filters;
+using MyRecipeBook.Application;
+using MyRecipeBook.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+//Services >> Serviço de Injeção de Depêndencia
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new StringConverter()));
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddApplication();
+builder.Services.AddInfraestruture(builder.Configuration);
+
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
     {
@@ -25,6 +32,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 );
 
 builder.Services.AddMvc(options => options.Filters.Add<ExceptionFilter>());
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 
