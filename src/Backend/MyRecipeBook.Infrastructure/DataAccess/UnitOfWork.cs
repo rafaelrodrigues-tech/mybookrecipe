@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MyRecipeBook.Domain.Repositories.User;
+using MyRecipeBook.Domain.Repositories;
 
 namespace MyRecipeBook.Infrastructure.DataAccess;
 
