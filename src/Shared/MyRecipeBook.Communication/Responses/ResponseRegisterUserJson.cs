@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace MyRecipeBook.Communication.Responses;
 
-namespace MyRecipeBook.Communication.Responses;
-
-internal class ResponseRegisterUserJson
+public class ResponseRegisterUserJson
 {
+    public string Name { get; set; } = string.Empty;
+
+    public ResponseTokensJson Tokens { get; set; } = new ResponseTokensJson();
 }
