@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using FluentMigrator.Runner;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;//Pacote instalado para injeção de dependencia 
 using MyRecipeBook.Domain.Repositories;
@@ -29,6 +31,17 @@ public static class DependencyInjectionExtension
                 var connectionString = configuration.GetConnectionString("DbConnection")!;
 
                 config.UseMySQL(connectionString);
+            });
+
+            services.AddFluentMigratorCore().ConfigureRunner(config =>
+            {
+                var connectionString = configuration.GetConnectionString("DbConnection")!;
+
+                config
+                .AddMySql5()
+                .WithGlobalConnectionString(connectionString)
+                .ScanIn(Assembly.Load("MyRecipeBook.Infrastructure"))
+                .For.All();
             });
         }
     }
